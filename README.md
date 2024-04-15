@@ -22,3 +22,7 @@ node server.js
 1. `Go to Room` button will be enabled in student.html
 1. Now any person who open the student.html can click `Go to Room` button, because teacher already entered the room
 
+
+
+https://github.com/devstefancho/server-sent-event-test/assets/61320923/1ee29d01-92b4-4532-9c0f-bd472e5271b8
+
