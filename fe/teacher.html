@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SSE Test</title>
+  </head>
+  <body>
+    <h1>Server Sent Events Test</h1>
+    <div id="events"></div>
+    <button onclick="sendId()">Send ID</button>
+
+    <script>
+      const eventSource = new EventSource("http://localhost:3000/events");
+      eventSource.onmessage = function (event) {
+        const newElement = document.createElement("p");
+        const eventObject = JSON.parse(event.data);
+        newElement.innerHTML = `Received ID: ${eventObject.id}`;
+        document.getElementById("events").appendChild(newElement);
+      };
+
+      // 서버로 ID를 보내는 함수
+      function sendId() {
+        fetch("http://localhost:3000/events/called", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: "12345" }), // 예시 ID
+        })
+          .then((response) => response.text())
+          .then((data) => console.log(data))
+          .then(() => {
+            window.location.href = "http://localhost:5500/room";
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+    </script>
+  </body>
+</html>

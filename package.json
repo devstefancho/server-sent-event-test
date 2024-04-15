@@ -1,0 +1,11 @@
+{
+  "name": "server-sent-event",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "http-server": "^14.1.1"
+  }
+}

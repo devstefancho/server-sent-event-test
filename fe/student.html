@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SSE Test</title>
+  </head>
+  <body>
+    <h1>Server Sent Events Test (Student)</h1>
+    <div id="events"></div>
+    <button onclick="goToRoom()" disabled="true">Go to Room</button>
+    <script>
+      const events = document.getElementById("events");
+      const source = new EventSource("http://localhost:3000/events");
+
+      source.onmessage = function (event) {
+        if (event.data === "room-ready") {
+          document.querySelector("button").disabled = false;
+        }
+      };
+
+      function goToRoom() {
+        window.location.href = "http://localhost:5500/room";
+      }
+    </script>
+  </body>
+</html>
